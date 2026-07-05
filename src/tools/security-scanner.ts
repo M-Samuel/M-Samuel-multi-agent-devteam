@@ -48,7 +48,7 @@ const SEVERITY_PATTERNS: Array<{
     cwe: "CWE-798",
   },
   {
-    pattern: /crypto\.getRandomValues|Math\.random\(\)/,
+    pattern: /Math\.random\(\)/,
     severity: "low",
     rule: "no-insecure-random",
     message: "Math.random() is not cryptographically secure",
@@ -121,13 +121,24 @@ export class SecurityScanner {
         }>;
       };
 
-      const findings: SecurityFinding[] = (data.results ?? []).map((r) => ({
-        severity: (r.extra?.severity?.toLowerCase() as SecurityFinding["severity"]) ?? "medium",
-        rule: r.check_id,
-        file: r.path,
-        line: r.start.line,
-        message: r.extra?.message ?? r.check_id,
-      }));
+      const findings: SecurityFinding[] = (data.results ?? []).map((r) => {
+        const semgrepSev = r.extra?.severity?.toUpperCase();
+        const severity: SecurityFinding["severity"] =
+          semgrepSev === "ERROR"
+            ? "high"
+            : semgrepSev === "WARNING"
+            ? "medium"
+            : semgrepSev === "INFO"
+            ? "info"
+            : "medium";
+        return {
+          severity,
+          rule: r.check_id,
+          file: r.path,
+          line: r.start.line,
+          message: r.extra?.message ?? r.check_id,
+        };
+      });
 
       return { findings, output: stdout };
     } catch {

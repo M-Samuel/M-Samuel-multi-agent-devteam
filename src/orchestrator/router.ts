@@ -38,8 +38,8 @@ function globMatch(pattern: string, filePath: string): boolean {
   const regexEscaped = withMarker
     .replace(/\\/g, "\\\\")
     .replace(/[.+?^${}()|[\]]/g, "\\$&");
-  // Step 3: single * (now escaped as \*) → [^/]*
-  const withSingleStar = regexEscaped.replace(/\\\*/g, "[^/]*");
+  // Step 3: single * (not yet converted) → [^/]*
+  const withSingleStar = regexEscaped.replace(/\*/g, "[^/]*");
   // Step 4: restore ** marker → .*
   const safePattern = withSingleStar.replace(/\x00DOUBLESTAR\x00/g, ".*");
 

@@ -246,7 +246,10 @@ export class StateMachine {
       });
 
       if (escalationResult.shouldEscalate && ticket.tier !== "A") {
-        const nextTier = this.router.escalate(ticket.tier);
+        // Honour the explicit target tier from the escalation rule when present;
+        // fall back to a single-step escalation if no target is specified.
+        const nextTier =
+          escalationResult.toTier ?? this.router.escalate(ticket.tier);
         if (nextTier) {
           return {
             nextStatus: "escalated",
