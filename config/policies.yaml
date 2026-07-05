@@ -1,0 +1,23 @@
+protectedPaths:
+  - "src/auth/**"
+  - "src/payments/**"
+  - "migrations/**"
+  - "**/*.secret.*"
+  - "**/.env*"
+
+locThresholdForEscalation: 400
+
+maxRepairLoops: 3
+
+globPatternsForTierC:
+  - "**/*.md"
+  - "**/*.test.ts"
+  - "**/*.spec.ts"
+  - "**/fixtures/**"
+  - "**/mocks/**"
+  - "**/docs/**"
+
+securityRules:
+  blockOnCritical: true
+  blockOnHigh: true
+  allowedCWEs: []

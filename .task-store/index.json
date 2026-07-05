@@ -1,0 +1,166 @@
+{
+  "154bfd8d-33fa-4429-bce6-23c171e114a4": {
+    "ticket": {
+      "id": "154bfd8d-33fa-4429-bce6-23c171e114a4",
+      "title": "Add user API",
+      "description": "Implement GET /users endpoint",
+      "priority": "medium",
+      "status": "pending",
+      "tier": "C",
+      "repairCount": 0,
+      "createdAt": "2026-07-05T23:25:59.849Z",
+      "updatedAt": "2026-07-05T23:25:59.849Z",
+      "dependencies": [],
+      "filePaths": [],
+      "tags": []
+    },
+    "tokenUsageByStage": {},
+    "costUsd": 0
+  },
+  "b348e0a9-1e2c-4be7-be0c-6be182800a35": {
+    "ticket": {
+      "id": "b348e0a9-1e2c-4be7-be0c-6be182800a35",
+      "title": "Add user API",
+      "description": "Implement GET /users endpoint",
+      "priority": "medium",
+      "status": "pending",
+      "tier": "C",
+      "repairCount": 0,
+      "createdAt": "2026-07-05T23:26:27.926Z",
+      "updatedAt": "2026-07-05T23:26:27.926Z",
+      "dependencies": [],
+      "filePaths": [],
+      "tags": []
+    },
+    "tokenUsageByStage": {
+      "implementation": {
+        "promptTokens": 100,
+        "completionTokens": 50,
+        "totalTokens": 150
+      }
+    },
+    "costUsd": 0,
+    "implementation": {
+      "files": [
+        {
+          "path": "src/index.ts",
+          "after": "export const hello = () => 'world';",
+          "linesAdded": 1,
+          "linesRemoved": 0
+        }
+      ],
+      "totalLinesAdded": 1,
+      "totalLinesRemoved": 0,
+      "commitMessage": "feat: mock implementation",
+      "branchName": "feat/mock-ticket"
+    },
+    "testReport": {
+      "passed": true,
+      "total": 3,
+      "passed_count": 3,
+      "failed_count": 0,
+      "skipped_count": 0,
+      "cases": [
+        {
+          "name": "should work correctly",
+          "passed": true,
+          "durationMs": 5
+        },
+        {
+          "name": "should handle edge cases",
+          "passed": true,
+          "durationMs": 3
+        },
+        {
+          "name": "should validate input",
+          "passed": true,
+          "durationMs": 2
+        }
+      ],
+      "durationMs": 42,
+      "output": "All tests passed"
+    }
+  },
+  "68d2eb3f-df7d-4eed-8d12-097407d15277": {
+    "ticket": {
+      "id": "68d2eb3f-df7d-4eed-8d12-097407d15277",
+      "title": "Add user API",
+      "description": "Implement GET /users endpoint",
+      "priority": "medium",
+      "status": "done",
+      "tier": "C",
+      "repairCount": 0,
+      "createdAt": "2026-07-05T23:26:56.035Z",
+      "updatedAt": "2026-07-05T23:26:56.035Z",
+      "dependencies": [],
+      "filePaths": [],
+      "tags": []
+    },
+    "tokenUsageByStage": {
+      "implementation": {
+        "promptTokens": 100,
+        "completionTokens": 50,
+        "totalTokens": 150
+      },
+      "review": {
+        "promptTokens": 100,
+        "completionTokens": 50,
+        "totalTokens": 150
+      }
+    },
+    "costUsd": 0,
+    "implementation": {
+      "files": [
+        {
+          "path": "src/index.ts",
+          "after": "export const hello = () => 'world';",
+          "linesAdded": 1,
+          "linesRemoved": 0
+        }
+      ],
+      "totalLinesAdded": 1,
+      "totalLinesRemoved": 0,
+      "commitMessage": "feat: mock implementation",
+      "branchName": "feat/mock-ticket"
+    },
+    "testReport": {
+      "passed": true,
+      "total": 3,
+      "passed_count": 3,
+      "failed_count": 0,
+      "skipped_count": 0,
+      "cases": [
+        {
+          "name": "should work correctly",
+          "passed": true,
+          "durationMs": 5
+        },
+        {
+          "name": "should handle edge cases",
+          "passed": true,
+          "durationMs": 3
+        },
+        {
+          "name": "should validate input",
+          "passed": true,
+          "durationMs": 2
+        }
+      ],
+      "durationMs": 42,
+      "output": "All tests passed"
+    },
+    "reviewReport": {
+      "approved": true,
+      "score": 90,
+      "comments": [],
+      "requiresEscalation": false,
+      "summary": "Looks good"
+    },
+    "mergerOutput": {
+      "branchName": "feat/mock-ticket",
+      "prTitle": "feat: mock implementation",
+      "prBody": "Mock PR body",
+      "mergeStatus": "ready"
+    }
+  }
+}

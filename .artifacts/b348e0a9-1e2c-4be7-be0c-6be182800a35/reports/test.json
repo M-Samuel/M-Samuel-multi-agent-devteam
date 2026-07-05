@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "total": 3,
+  "passed_count": 3,
+  "failed_count": 0,
+  "skipped_count": 0,
+  "cases": [
+    {
+      "name": "should work correctly",
+      "passed": true,
+      "durationMs": 5
+    },
+    {
+      "name": "should handle edge cases",
+      "passed": true,
+      "durationMs": 3
+    },
+    {
+      "name": "should validate input",
+      "passed": true,
+      "durationMs": 2
+    }
+  ],
+  "durationMs": 42,
+  "output": "All tests passed"
+}

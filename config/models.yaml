@@ -1,0 +1,18 @@
+tiers:
+  A:
+    model: gpt-4-turbo
+    maxTokens: 100000
+    costPer1kInput: 0.01
+    costPer1kOutput: 0.03
+
+  B:
+    model: gpt-3.5-turbo
+    maxTokens: 50000
+    costPer1kInput: 0.001
+    costPer1kOutput: 0.002
+
+  C:
+    model: gpt-3.5-turbo
+    maxTokens: 20000
+    costPer1kInput: 0.0005
+    costPer1kOutput: 0.0015
