@@ -84,7 +84,7 @@ async function main(): Promise<void> {
 
   const budgetTracker = new BudgetTracker(budget.maxCostUsd);
   const router = new Router();
-  const escalationEngine = new EscalationEngine();
+  const escalationEngine = new EscalationEngine([], router.maxRepairLoops);
   const stateMachine = new StateMachine(router, escalationEngine);
   const taskStore = new TaskStore();
   const artifacts = new Artifacts();

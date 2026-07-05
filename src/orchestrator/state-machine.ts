@@ -54,7 +54,7 @@ export class StateMachine {
         return this.fromPlanning(ticket);
 
       case "implementing":
-        return this.fromImplementing(ticket, testReport, implementation);
+        return this.fromImplementing(ticket, implementation);
 
       case "testing":
         return this.fromTesting(ticket, testReport);
@@ -111,7 +111,6 @@ export class StateMachine {
 
   private fromImplementing(
     ticket: Ticket,
-    testReport: TestReport | undefined,
     implementation: ImplementationResult | undefined
   ): TransitionResult {
     // Check if implementation needs to go to testing

@@ -8,3 +8,5 @@ dist/
 .idea/
 target/
 .turbo/
+.task-store/
+.artifacts/

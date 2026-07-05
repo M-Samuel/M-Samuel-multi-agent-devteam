@@ -139,11 +139,13 @@ export class SecurityScanner {
     filePaths: string[]
   ): Promise<{ findings: SecurityFinding[]; output: string }> {
     const { readFile } = await import("fs/promises");
+    const { resolve } = await import("path");
     const findings: SecurityFinding[] = [];
 
     for (const filePath of filePaths) {
       try {
-        const content = await readFile(filePath, "utf8");
+        const resolvedPath = resolve(this.cwd, filePath);
+        const content = await readFile(resolvedPath, "utf8");
         const lines = content.split("\n");
 
         for (let i = 0; i < lines.length; i++) {

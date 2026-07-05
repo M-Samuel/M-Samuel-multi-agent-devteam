@@ -127,22 +127,19 @@ export class VectorStore {
       .digest("hex")
       .slice(0, 16);
 
-    // Rebuild vocabulary with new content
-    this.rebuildVocabulary();
-    this.rebuildEmbeddings();
-
-    const tokens = tokenize(content);
-    const embedding = buildVector(tokens, this.vocabulary);
-
+    // Push entry first so its tokens are included in vocabulary rebuild
     const entry: VectorEntry = {
       id,
       content,
       metadata,
-      embedding,
+      embedding: [],
       createdAt: new Date().toISOString(),
     };
 
     this.entries.push(entry);
+    this.rebuildVocabulary();
+    this.rebuildEmbeddings();
+
     await this.persist();
     return entry;
   }

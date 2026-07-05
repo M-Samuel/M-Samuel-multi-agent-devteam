@@ -104,7 +104,7 @@ describe("EscalationEngine", () => {
 
     it("escalates tickets touching payment paths", () => {
       const ctx = makeContext({
-        ticket: makeTicket({ filePaths: ["src/payment/stripe.ts"] }),
+        ticket: makeTicket({ filePaths: ["src/payments/stripe.ts"] }),
       });
       const result = engine.evaluate(ctx);
       expect(result.shouldEscalate).toBe(true);
@@ -112,7 +112,7 @@ describe("EscalationEngine", () => {
 
     it("escalates tickets touching migration files", () => {
       const ctx = makeContext({
-        ticket: makeTicket({ filePaths: ["migration/add_users.sql"] }),
+        ticket: makeTicket({ filePaths: ["migrations/add_users.sql"] }),
       });
       const result = engine.evaluate(ctx);
       expect(result.shouldEscalate).toBe(true);

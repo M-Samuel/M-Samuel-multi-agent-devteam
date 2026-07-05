@@ -58,7 +58,7 @@ export class LintTool {
             file: result.filePath,
             line: msg.line,
             column: msg.column,
-            severity: msg.severity === 2 ? "error" : "warning",
+            severity: msg.severity === 2 ? "error" : msg.severity === 1 ? "warning" : "info",
             message: msg.message,
             rule: msg.ruleId ?? "unknown",
           });

@@ -19,17 +19,6 @@ export interface EscalationResult {
 // Built-in rules
 // ──────────────────────────────────────────────
 
-const REPAIR_LOOP_RULE: EscalationRule = {
-  name: "repair-loop-exhausted",
-  description: "Escalate when max repair loops reached on current tier",
-  fromTier: "C",
-  toTier: "B",
-  condition: (ctx) => {
-    const maxLoops = 3;
-    return ctx.repairCount >= maxLoops;
-  },
-};
-
 const PROTECTED_PATH_RULE: EscalationRule = {
   name: "protected-path",
   description: "Escalate when implementation touches protected paths",
@@ -97,14 +86,22 @@ const CRITICAL_TICKET_RULE: EscalationRule = {
 export class EscalationEngine {
   private rules: EscalationRule[];
 
-  constructor(additionalRules: EscalationRule[] = []) {
+  constructor(additionalRules: EscalationRule[] = [], maxRepairLoops = 3) {
+    const repairLoopRule: EscalationRule = {
+      name: "repair-loop-exhausted",
+      description: "Escalate when max repair loops reached on current tier",
+      fromTier: "C",
+      toTier: "B",
+      condition: (ctx) => ctx.repairCount >= maxRepairLoops,
+    };
+
     this.rules = [
       CRITICAL_TICKET_RULE,
       PROTECTED_PATH_RULE,
       SECURITY_CONCERN_RULE,
       LARGE_CHANGE_RULE,
       REVIEWER_ESCALATION_RULE,
-      REPAIR_LOOP_RULE,
+      repairLoopRule,
       ...additionalRules,
     ];
   }
