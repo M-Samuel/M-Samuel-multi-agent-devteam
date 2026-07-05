@@ -30,13 +30,20 @@ interface PoliciesConfig {
 // ──────────────────────────────────────────────
 
 function globMatch(pattern: string, filePath: string): boolean {
-  // Convert glob to regex
-  const escaped = pattern
-    .replace(/\./g, "\\.")
-    .replace(/\*\*/g, "§§") // placeholder for **
-    .replace(/\*/g, "[^/]*")
-    .replace(/§§/g, ".*");
-  const regex = new RegExp(`^${escaped}$`);
+  // Convert glob pattern to regex safely — escape all special regex chars,
+  // then replace glob wildcards.
+  // Step 1: protect ** with a unique marker before escaping
+  const withMarker = pattern.replace(/\*\*/g, "\x00DOUBLESTAR\x00");
+  // Step 2: escape all regex metacharacters (backslash first, then others)
+  const regexEscaped = withMarker
+    .replace(/\\/g, "\\\\")
+    .replace(/[.+?^${}()|[\]]/g, "\\$&");
+  // Step 3: single * (now escaped as \*) → [^/]*
+  const withSingleStar = regexEscaped.replace(/\\\*/g, "[^/]*");
+  // Step 4: restore ** marker → .*
+  const safePattern = withSingleStar.replace(/\x00DOUBLESTAR\x00/g, ".*");
+
+  const regex = new RegExp(`^${safePattern}$`);
   return regex.test(filePath);
 }
 
